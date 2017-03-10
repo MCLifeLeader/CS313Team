@@ -11,14 +11,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iHangry | Find Some Foods</title>
         
+        <!-- jQuery Support -->
+        <script src="scripts/scripts/jquery-3.1.1.min.js"></script>
+
+        <!-- Bootstrap JavaScript Support -->
+        <script src="scripts/scripts/bootstrap.min.js"></script>
+        
         <!-- BOOTSTRAP CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="content/bootstrap.min.css">
         
         <!-- MATERIAL DESIGN FOR BOOTSTRAP - http://fezvrasta.github.io/bootstrap-material-design/ -->
-        <link rel="stylesheet" href="bootstrap-material-design.min.css" type="text/css">
+        <link rel="stylesheet" href="content/bootstrap-material-design.min.css" type="text/css">
         
         <!-- CUSTOM STYLESHEETS-->
-        <link rel="stylesheet" href="styles.css" type="text/css">
+        <link rel="stylesheet" href="content/styles.css" type="text/css">
     </head>
     <body>
 
