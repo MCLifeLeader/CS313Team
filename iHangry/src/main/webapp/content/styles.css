@@ -3,6 +3,10 @@
     Author     : Ele Thompson
 */
 
+.btn {
+    white-space: normal;
+}
+
 main {
     margin-top:50px;
 }
