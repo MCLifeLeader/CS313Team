@@ -8,7 +8,8 @@ nbdist/
 
 #MAVEN
 target/
-pom.xml.tag
+tomcat.5000/
+tomcat.8080/pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
