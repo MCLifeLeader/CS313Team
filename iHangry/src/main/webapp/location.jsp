@@ -38,7 +38,7 @@
                     <div class="col-sm-offset-2 col-sm-8 well text-center">
                         <h1>Where you at?</h1>
                         <!-- CHANGE ACTION TO SETLOCATION SERVLET-->
-                        <form action="index.jsp" method="POST">
+                        <form action="SetLocation" method="POST">
                             <div class="form-group row">
                                 <input type="text" class="col-sm-8 col-sm-offset-2" name="location" id="location" placeholder="Street address, city, state">
                             </div>

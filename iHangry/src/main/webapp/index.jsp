@@ -55,11 +55,25 @@
                     </div>
 
                     <div class="col-sm-7 col-md-8 text-center">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2878.800171695576!2d-111.78728269853129!3d43.81850417901355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53540b005fb1bc9f%3A0x386ba7f8122e48e8!2sBYU-Idaho+Center%2C+525+S+Center+St%2C+Rexburg%2C+ID+83460!5e0!3m2!1sen!2sus!4v1489210594052" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        
+                    <!-- Checks if there is a location set, if not, show BYUI map -->
+                    <!-- Will probably want to redirect the user if there is no location set -->
+                    <c:choose>
+                        <c:when test="${api_key != null}">
+                            <iframe src="https://www.google.com/maps/embed/v1/place?key=${api_key}&q=${location}" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </c:when>
+                        <c:otherwise>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11515.269763446113!2d-111.782753!3d43.818146!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1e5534d3c38ef412!2sBrigham+Young+University-Idaho!5e0!3m2!1sen!2sus!4v1489449791545" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </c:otherwise>
+                    </c:choose>
                     </div>
                 </div>
                 
                 <div class="row text-center">
+                    <h2>DEBUGGING</h2>
+                    <pre>
+                        ${location}
+                    </pre>
                     <a href="location.jsp" class="btn btn-large btn-raised btn-primary pull-right">Change Location</a>
                 </div>
             </div>
