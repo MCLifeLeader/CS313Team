@@ -17,6 +17,9 @@
         <!-- Bootstrap JavaScript Support -->
         <script src="scripts/bootstrap.min.js"></script>
         
+        <!-- Ajax -->
+        <script src="scripts/ajax.js"></script>
+        
         <!-- BOOTSTRAP CSS -->
         <link rel="stylesheet" href="content/bootstrap.min.css">
         
@@ -48,7 +51,7 @@
                                 <p>Time to get there</p>
 
                                 <div class="text-center">
-                                    <a href="#" class="btn btn-large btn-raised btn-primary">That looks gross. Find another.</a>
+                                    <button class="btn btn-large btn-raised btn-primary" id="FindNext">That looks gross. Find another.</button>
                                 </div>
                             </div>
                         </div>
