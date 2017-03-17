@@ -1,10 +1,9 @@
 package edu.cs313.byui.ihangry;
 
+import edu.cs313.byui.HttpServletiHangryBase;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * - Figure out if its better to store location by longitude/latitude or street address
  */
 @WebServlet(name = "SetLocation", urlPatterns = {"/SetLocation"})
-public class SetLocation extends HttpServlet {
+public class SetLocation extends HttpServletiHangryBase {
 
     /**
      * Handles the HTTP <code>POST</code> method.
