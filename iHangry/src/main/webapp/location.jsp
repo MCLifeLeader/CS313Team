@@ -27,8 +27,12 @@
         <!-- CUSTOM STYLESHEETS-->
         <link rel="stylesheet" href="content/styles.css" type="text/css">
         
+        <!-- FAVICON IMAGE -->
+        <link rel="shortcut icon" href="/images/iHangry.ico" type="image/x-icon" />
+        
         <!-- Google Places API Access - For autocomplete (Move to servlet controller?) -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxRoQJSpiJs0YzwUoQZS86YqRT0eZSjoE&libraries=places"></script>
+       
     </head>
     <body>
 
