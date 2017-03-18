@@ -8,6 +8,6 @@
     </property>
   </jsp-config>
   <listener>
-      <listener-class>edu.cs313.byui.config.Config</listener-class>
+    <listener-class>edu.cs313.byui.config.Config</listener-class>
   </listener>
 </glassfish-web-app>
