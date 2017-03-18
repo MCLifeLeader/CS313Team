@@ -89,16 +89,11 @@
         </footer>
 		<!-- Geolocation Access Script (Move as needed) -->
         <script>
-            navigator.geolocation.getCurrentPosition(success, error);
+            navigator.geolocation.getCurrentPosition(showPosition);
             
-            function success(position){
+            function showPosition(position){
                 // Get user location
-                var lat = position.coords.latitude;
-                var lon = position.coords.longitude;
-                
-            }
-            function error(){
-                // Print out error or something, I dunno
+                var latlon = position.coords.latitude + "," + position.coords.longitude;
             }
         </script>
     </body>
