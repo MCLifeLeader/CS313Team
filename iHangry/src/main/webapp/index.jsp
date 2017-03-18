@@ -66,7 +66,7 @@
                     <!-- Will probably want to redirect the user if there is no location set -->
                     <c:choose>
                         <c:when test="${api_key != null}">
-                            <iframe src="https://www.google.com/maps/embed/v1/place?key=${api_key}&q=${location}" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe id="mapLocation" src="https://www.google.com/maps/embed/v1/place?key=${api_key}&q=${location}" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </c:when>
                         <c:otherwise>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11515.269763446113!2d-111.782753!3d43.818146!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1e5534d3c38ef412!2sBrigham+Young+University-Idaho!5e0!3m2!1sen!2sus!4v1489449791545" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -88,13 +88,8 @@
 
         </footer>
 		<!-- Geolocation Access Script (Move as needed) -->
-        <script>
-            navigator.geolocation.getCurrentPosition(showPosition);
-            
-            function showPosition(position){
-                // Get user location
-                var latlon = position.coords.latitude + "," + position.coords.longitude;
-            }
-        </script>
+<!--        <script>
+           
+        </script>-->
     </body>
 </html>

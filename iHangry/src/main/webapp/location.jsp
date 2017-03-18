@@ -42,7 +42,7 @@
                     <div class="col-sm-offset-2 col-sm-8 well text-center">
                         <h1>Where you at?</h1>
                         <!-- CHANGE ACTION TO SETLOCATION SERVLET-->
-                        <form action="SetLocation" method="POST">
+                        <form id="submitLoc" action="SetLocation" method="POST">
                             <div class="form-group row">
                                 <input type="text" class="col-sm-8 col-sm-offset-2" name="location" id="location" placeholder="Street address, city, state">
                             </div>
@@ -61,6 +61,18 @@
         <script>
           var input = document.getElementById('location');
           var autocomplete = new google.maps.places.Autocomplete(input);
+          
+           navigator.geolocation.getCurrentPosition(showPosition);
+            
+            function showPosition(position){
+                // Get user location
+                var latlon = position.coords.latitude + "," + position.coords.longitude;
+                var location = document.getElementById("location");
+                
+                location.value = latlon;
+                
+                document.getElementById("submitLoc").submit();
+            }
         </script>
         
     </body>
