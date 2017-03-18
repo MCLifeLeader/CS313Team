@@ -28,6 +28,9 @@
         
         <!-- CUSTOM STYLESHEETS-->
         <link rel="stylesheet" href="content/styles.css" type="text/css">
+	    
+	<!-- FAVICON IMAGE-->
+	<link rel="shortcut icon" href="/images/iHangry.ico" type="image/x-icon" />
     </head>
     <body>
 
