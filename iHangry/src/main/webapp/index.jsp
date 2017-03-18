@@ -84,6 +84,19 @@
         <footer>
 
         </footer>
-
+		<!-- Geolocation Access Script (Move as needed) -->
+        <script>
+            navigator.geolocation.getCurrentPosition(success, error);
+            
+            function success(position){
+                // Get user location
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+                
+            }
+            function error(){
+                // Print out error or something, I dunno
+            }
+        </script>
     </body>
 </html>
