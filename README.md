@@ -1,7 +1,11 @@
 # CS313Team
 CS - 313 Team Project
+
 ## Purpose
 This project is to demonstrate a team collaborative effort in developing a full stack application utilizing knowledge gained throughout the course.
+
+## Project Hosted Location
+<a href="https://cs313team.herokuapp.com/">https://cs313team.herokuapp.com/</a>
 
 ## Project Description
 <a href="https://docs.google.com/document/d/12ICpw06PWAILqWMi6fGvil4nBqkiN91hkjCIs-aIs9Y/">Project Proposal</a>
