@@ -41,7 +41,7 @@ public class SetLocation extends HttpServletiHangryBase {
         request.setAttribute("parsed_location", parsed_location);
         request.setAttribute("location", location);
         // Send location data to the index.jsp
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/location.jsp").forward(request, response);
     }
 
 }
