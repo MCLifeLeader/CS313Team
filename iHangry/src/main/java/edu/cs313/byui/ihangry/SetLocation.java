@@ -36,31 +36,51 @@ public class SetLocation extends HttpServletiHangryBase {
             throws ServletException, IOException {
 
         this.LoadConfig();
-
+        String ApiKey = this._config.readConfig().getProperty("googleApiKey");
+        
+        
         // Get form data from location.jsp
         String location = request.getParameter("location");
         // Replace spaces with + signs
         String parsed_location = location.replaceAll("\\s+", "+");
-
-        String ApiKey = this._config.readConfig().getProperty("googleApiKey");
         
-        // TODO: Get a list of restaurants near the location
-         // Using a static location for now
-        // I was trying to use the Jackson Object Mapper that we used for the
-        // Movies team activity to handle the JSON
-        URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key="
+        // Get the geocode (lat/long) for the address using Google Maps API for use
+        // with Google Places search
+        URL addressUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?key="
                            + ApiKey
-                           + "&location=33.8340573,-118.13662550000001"
+                           + "&address=" + parsed_location);
+        ObjectMapper addressMapper = new ObjectMapper();
+        Map<String, Object> addressMap = addressMapper.readValue(addressUrl, Map.class);
+        List geocodeList = (List)addressMap.get("results");
+        for (Object item : geocodeList) {
+            Map<String, Object> innerMap = (Map<String, Object>)item;
+        }
+        // TODO: Figure out a way to extract the latitude and longitude from the results
+        
+        // Create URL to get a list of nearby restaurants
+        // Google Places API requires that location is given in latitude,longitude format
+        URL restaurantsUrl = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key="
+                           + ApiKey
+                           + "&location=" + "33.8340709,-118.13663199999999"
                            + "&rankby=distance&type=restaurant");
+        // Create Map to store and read JSON from the list of restaurants
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> map = mapper.readValue(url, Map.class);
+        Map<String, Object> map = mapper.readValue(restaurantsUrl, Map.class);
         List list = (List)map.get("results");
+        for (Object item : list) {
+            Map<String, Object> innerMap = (Map<String, Object>)item;
+        }
+        
+        // TODO: Store the list of restaurants with necessary information into an array?
+        // TODO: Randomly select one of the restaurants to display
+        // TODO: Create another servlet to select another restaurant from the list of nearby
         
         // Bind appropriate attributes
         request.setAttribute("api_key", ApiKey);
         request.setAttribute("parsed_location", parsed_location);
         request.setAttribute("location", location);
-        request.setAttribute("restaurants", list);
+        request.setAttribute("geocodeList", geocodeList); // DEBUGGING
+        request.setAttribute("restaurants", list); // DEBUGGING
         
         // Send location data to the index.jsp
         request.getRequestDispatcher("location.jsp").forward(request, response);

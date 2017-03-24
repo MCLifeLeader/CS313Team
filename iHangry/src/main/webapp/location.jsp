@@ -79,8 +79,13 @@
                     <h2>DEBUGGING</h2>
                     <pre>
                         ${location}<br>
+                        Geocode Results:<br>
+                        <c:forEach items="${geocodeList}" var="geocode">
+                            ${geocode}<br>
+                        </c:forEach>
                         <!-- debugging output for list of restaurants-->
-                        <c:forEach items="${list}" var="restaurant">
+                        Restaurants Results:<br>
+                        <c:forEach items="${restaurants}" var="restaurant">
                             ${restaurant}<br>
                         </c:forEach>
                     </pre>
