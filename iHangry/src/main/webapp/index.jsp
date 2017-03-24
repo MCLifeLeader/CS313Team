@@ -47,7 +47,7 @@
                                 <input type="text" class="col-sm-8 col-sm-offset-2" name="location" id="location" placeholder="Street address, city, state">
                             </div>
                             <div class="row">
-                                <input type="submit"  class="btn btn-primary btn-raised btn-large" value="Set Location">
+                                <input type="submit" class="btn btn-primary btn-raised btn-large" value="Set Location">
                             </div>
                         </form>
                     </div>
@@ -59,19 +59,30 @@
         </footer>
         <!-- Google Places Autocomplete Script (Move as needed)-->
         <script>
-          var input = document.getElementById('location');
-          var autocomplete = new google.maps.places.Autocomplete(input);
+            var input = document.getElementById('location');
+            var autocomplete = new google.maps.places.Autocomplete(input);
           
-           navigator.geolocation.getCurrentPosition(showPosition);
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(accept, decline);
+            }
             
-            function showPosition(position){
-                // Get user location
+            // If the user accepted geolocation tracking
+            function accept(position) {
+                // Put the latitude and longitude into a string
                 var latlon = position.coords.latitude + "," + position.coords.longitude;
+                // Put string into the location form
                 var location = document.getElementById("location");
-                
                 location.value = latlon;
                 
-                document.getElementById("submitLoc").submit();
+                // I'm still not 100% sure how to get this information
+                // to Java from JS. That is the missing piece that
+                // would go here...
+            }
+            
+            // If the user declined geolocation tracking
+            function decline() {
+                // DEBUGGING
+                console.log("Rejected geolocation");
             }
         </script>
         

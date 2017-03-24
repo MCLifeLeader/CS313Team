@@ -78,7 +78,11 @@
                 <div class="row text-center">
                     <h2>DEBUGGING</h2>
                     <pre>
-                        ${location}
+                        ${location}<br>
+                        <!-- debugging output for list of restaurants-->
+                        <c:forEach items="${list}" var="restaurant">
+                            ${restaurant}<br>
+                        </c:forEach>
                     </pre>
                     <a href="index.jsp" class="btn btn-large btn-raised btn-primary pull-right">Change Location</a>
                 </div>
