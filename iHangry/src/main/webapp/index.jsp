@@ -79,11 +79,33 @@
                 // would go here...
             }
             
+            //stash position in local storage if available
+            function storePosition(position) {
+                if (typeof(Storage) !== "undefined") {
+                    localStorage.setItem("location", position);
+                    //var storedPosition = localStorage.getItem("location");
+                    //alert("Location was stored as 'location' with value: ".concat(storedPosition));
+                } else {
+                    //alert("Local Storage is Not Available: Your location will be forgotten when you close the browser.");
+                }
+            }
+            
+            //pulls position in local storage if available
+            function retrievePosition(position) {
+                if (typeof(Storage) !== "undefined" && localStorage.getItem("location") !== "undefined") {
+                    return localStorage.getItem("location");
+                } else {
+                    //local storage was not available
+                }
+            }
+            
             // If the user declined geolocation tracking
             function decline() {
                 // DEBUGGING
                 console.log("Rejected geolocation");
             }
+            
+            
         </script>
         
     </body>
