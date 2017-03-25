@@ -12,11 +12,13 @@ function setupMap(lat, lng) {
         zoom: 14,
         center: new google.maps.LatLng(lat, lng)
     });
+    $(mapEl).data('map', map);
 
     var infowindow = new google.maps.InfoWindow();
 
+    var color = "#FFF";
     //set current location
-    setMarker(lat, lng, "Your Location", map, infowindow);
+    setMarker(lat, lng, "Your Location", map, infowindow, color);
   
     //add color variable to chagne start location (green?)
 
@@ -28,27 +30,33 @@ function setupMap(lat, lng) {
             locs.push([element.name, element.geometry.location.lat, element.geometry.location.lng, counter++]);
         });
 
+        var markers = Array();
+        var color = "#0F0";
         for (var i = 0; i < locs.length; i++) {
-            setMarker(locs[i][1], locs[i][2], locs[i][0], map, infowindow);
+            setMarker(locs[i][1], locs[i][2], locs[i][0], map, infowindow, color, markers);
         }
+        $(mapEl).data('markers', markers); //Create marker list
         getRecommendation();
     });
 }
 
 function setDistanceAndTime(placeID, distEl, timeEl) {
-    //debugger;
     $.post("GetDistance", {placeID: placeID}, function(response) {
-        //debugger;
         distEl.text(response.rows[0].elements[0].distance.text);
         timeEl.text(response.rows[0].elements[0].duration.text);
     });
 }
 
-function setMarker(lat, lng, text, map, infowindow) {
+function setMarker(lat, lng, text, map, infowindow, color, list) {
     marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
-        map: map
+        map: map,
+        icon: pinSymbol(color)
     });
+    
+    if (list) {
+        list.push(marker);
+    }
 
     google.maps.event.addListener(marker, 'click', (function(marker) {
         return function() {
@@ -58,20 +66,31 @@ function setMarker(lat, lng, text, map, infowindow) {
     })(marker));
 }
 
+function pinSymbol(color) {
+    return {
+        path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+        fillColor: color,
+        fillOpacity: 1,
+        strokeColor: '#000',
+        strokeWeight: 2,
+        scale: 1
+   };
+}
+
 function getRecommendation(tries) {
     var map = $('#map'), // Get map div, because it holds the loc data
         infoDiv = $('#InfoDiv'), // get info div for manipulation
         locs = map.data('locs'), // get loc data
         minimum = 0, // minimum random number
         maximum = locs.length - 1, // maximum random number
-        random = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum, // get random restaurant index
+        placeIndex = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum, // get random restaurant index
         maxTries = 10; // max number of tries before giving up
     
     infoDiv.find('.loader-div').show();
     infoDiv.find('.content-div').hide();
         
     tries = tries || 0; // if tries is passed in, set it to that, otherwise 0
-    var loc = locs[random];
+    var loc = locs[placeIndex];
     // logic for testing a retry (if not open and haven't run out of tries)
     if ((!loc || (loc.opening_hours && !loc.opening_hours.open_now)) && tries < maxTries) {
         getRecommendation(tries + 1);
@@ -79,10 +98,17 @@ function getRecommendation(tries) {
         infoDiv.find('.name').text(loc.name);
         infoDiv.find('.rating').text(loc.rating + " stars");
         infoDiv.find('.address').text(loc.vicinity);
-        //debugger;
-        setDistanceAndTime(loc.place_id, infoDiv.find('.distance'), infoDiv.find('.eta'));
         
+        setDistanceAndTime(loc.place_id, infoDiv.find('.distance'), infoDiv.find('.eta'));
         infoDiv.find('.loader-div').hide();
         infoDiv.find('.content-div').show();
+        focusPin(placeIndex);
     }
+}
+
+function focusPin(index) {
+    var map = $("#map");
+    var marker = map.data('markers')[index];
+    google.maps.event.trigger(marker, 'click');
+    map.data('map').setCenter(marker.getPosition());
 }
