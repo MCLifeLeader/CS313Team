@@ -17,14 +17,29 @@
         <!-- Bootstrap JavaScript Support -->
         <script src="scripts/bootstrap.min.js"></script>
         
-        <!-- Ajax -->
-        <script src="scripts/ajax.js"></script>
+        <script src="scripts/mapHelper.js"></script>
+        
+        <script src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyBxRoQJSpiJs0YzwUoQZS86YqRT0eZSjoE" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            $(function() {
+                var lat = '${latitude}';
+                var lng = '${longitude}';
+                setupMap(lat, lng);
+                $('#FindNext').on('click', function() {
+                    getRecommendation();
+                });
+            });
+        </script>
         
         <!-- BOOTSTRAP CSS -->
         <link rel="stylesheet" href="content/bootstrap.min.css">
         
         <!-- MATERIAL DESIGN FOR BOOTSTRAP - http://fezvrasta.github.io/bootstrap-material-design/ -->
         <link rel="stylesheet" href="content/bootstrap-material-design.min.css" type="text/css">
+        
+        <!-- FONT AWESOME ICONS -->
+        <link rel="stylesheet" href="content/FontAwesome/css/font-awesome.min.css" type="text/css">
         
         <!-- CUSTOM STYLESHEETS-->
         <link rel="stylesheet" href="content/styles.css" type="text/css">
@@ -36,22 +51,26 @@
 
         <main>
             <div class="container">
-                <div class="row">
+                <div id="map"></div>
+                <div class="row margin-top">
                     <div class="col-sm-5 col-md-4">
                         <div class="row">
-                            <div class="well">
+                            <div id="InfoDiv" class="well">
                                 <span class="text-center">
                                     <h1>iHangry</h1>
                                     <p>Find your lunch.</p>
                                 </span>
-
                                 <hr>
-
-                                <h2>Restaurant Name</h2>
-                                <p>Ratings stars</p>
-                                <p>Address</p>
-                                <p>Distance</p>
-                                <p>Time to get there</p>
+                                <div class="loader-div h1 text-center">
+                                    <i class="fa fa-spinner fa-pulse"></i>
+                                </div>
+                                <div class="content-div collapse">
+                                    <h2 class="name">Restaurant Name</h2>
+                                    <p class="rating">Ratings stars</p>
+                                    <p class="address">Address</p>
+                                    <p class="distance">Distance</p>
+                                    <p class="eta">Time to get there</p>
+                                </div>
 
                                 <div class="text-center">
                                     <button class="btn btn-large btn-raised btn-primary" id="FindNext">That looks gross. Find another.</button>
@@ -60,19 +79,18 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-7 col-md-8 text-center">
-                        
-                    <!-- Checks if there is a location set, if not, show BYUI map -->
-                    <!-- Will probably want to redirect the user if there is no location set -->
-                    <c:choose>
-                        <c:when test="${api_key != null}">
-                            <iframe id="mapLocation" src="https://www.google.com/maps/embed/v1/place?key=${api_key}&q=${location}" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </c:when>
-                        <c:otherwise>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11515.269763446113!2d-111.782753!3d43.818146!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1e5534d3c38ef412!2sBrigham+Young+University-Idaho!5e0!3m2!1sen!2sus!4v1489449791545" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </c:otherwise>
-                    </c:choose>
-                    </div>
+                    <!--<div class="col-sm-7 col-md-8 text-center">-->
+                        <!-- Checks if there is a location set, if not, show BYUI map -->
+                        <!-- Will probably want to redirect the user if there is no location set -->
+                        <c:choose>
+                            <c:when test="${api_key != null}">
+                                <!--<iframe id="mapLocation" src="https://www.google.com/maps/embed/v1/place?key=${api_key}&q=${location}" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+                            </c:when>
+                            <c:otherwise>
+                                <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11515.269763446113!2d-111.782753!3d43.818146!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1e5534d3c38ef412!2sBrigham+Young+University-Idaho!5e0!3m2!1sen!2sus!4v1489449791545" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+                            </c:otherwise>
+                        </c:choose>
+                    <!--</div>-->
                 </div>
                 
                 <div class="row text-center">
@@ -82,11 +100,6 @@
                         Geocode Results:<br>
                         <c:forEach items="${geocodeList}" var="geocode">
                             ${geocode}<br>
-                        </c:forEach>
-                        <!-- debugging output for list of restaurants-->
-                        Restaurants Results:<br>
-                        <c:forEach items="${restaurants}" var="restaurant">
-                            ${restaurant}<br>
                         </c:forEach>
                     </pre>
                     <a href="index.jsp" class="btn btn-large btn-raised btn-primary pull-right">Change Location</a>
