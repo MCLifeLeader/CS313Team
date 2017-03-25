@@ -19,8 +19,6 @@ function setupMap(lat, lng) {
     var color = "#FFF";
     //set current location
     setMarker(lat, lng, "Your Location", map, infowindow, color);
-  
-    //add color variable to chagne start location (green?)
 
     $.post("GetRestaurants", {lat: lat, lng: lng}, function(response) {
         $(mapEl).data('locs', response); //saves all locations to the map
@@ -30,20 +28,20 @@ function setupMap(lat, lng) {
             locs.push([element.name, element.geometry.location.lat, element.geometry.location.lng, counter++]);
         });
 
-        var markers = Array();
+        var markers = Array();//Create marker list
         var color = "#0F0";
         for (var i = 0; i < locs.length; i++) {
             setMarker(locs[i][1], locs[i][2], locs[i][0], map, infowindow, color, markers);
         }
-        $(mapEl).data('markers', markers); //Create marker list
+        $(mapEl).data('markers', markers); //Add to map element
         getRecommendation();
     });
 }
 
 function setDistanceAndTime(placeID, distEl, timeEl) {
     $.post("GetDistance", {placeID: placeID}, function(response) {
-        distEl.text(response.rows[0].elements[0].distance.text);
-        timeEl.text(response.rows[0].elements[0].duration.text);
+        distEl.text("Distance: " + response.rows[0].elements[0].distance.text);
+        timeEl.text("ETA: " + response.rows[0].elements[0].duration.text);
     });
 }
 
@@ -57,10 +55,12 @@ function setMarker(lat, lng, text, map, infowindow, color, list) {
     if (list) {
         list.push(marker);
     }
+    
+    var content = "<strong>" + text + "</strong>";
 
     google.maps.event.addListener(marker, 'click', (function(marker) {
         return function() {
-            infowindow.setContent(text); //fills pin info
+            infowindow.setContent(content); //fills pin info
             infowindow.open(map, marker);
         };
     })(marker));
@@ -84,7 +84,7 @@ function getRecommendation(tries) {
         minimum = 0, // minimum random number
         maximum = locs.length - 1, // maximum random number
         placeIndex = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum, // get random restaurant index
-        lastIndex = map.data('last')
+        lastIndex = map.data('last'),
         maxTries = 10; // max number of tries before giving up
     
     infoDiv.find('.loader-div').show();
