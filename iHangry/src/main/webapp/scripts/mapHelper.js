@@ -84,17 +84,22 @@ function getRecommendation(tries) {
         minimum = 0, // minimum random number
         maximum = locs.length - 1, // maximum random number
         placeIndex = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum, // get random restaurant index
+        lastIndex = map.data('last')
         maxTries = 10; // max number of tries before giving up
     
     infoDiv.find('.loader-div').show();
     infoDiv.find('.content-div').hide();
         
     tries = tries || 0; // if tries is passed in, set it to that, otherwise 0
-    var loc = locs[placeIndex];
+    var loc = locs[placeIndex],
+        isSamePlace = lastIndex && placeIndex === lastIndex,
+        isOpen = (!loc || (loc.opening_hours && !loc.opening_hours.open_now));
     // logic for testing a retry (if not open and haven't run out of tries)
-    if ((!loc || (loc.opening_hours && !loc.opening_hours.open_now)) && tries < maxTries) {
+    if (isOpen && tries < maxTries && isSamePlace) {
         getRecommendation(tries + 1);
     } else {
+        map.data('last', placeIndex);
+        
         infoDiv.find('.name').text(loc.name);
         infoDiv.find('.rating').text(loc.rating + " stars");
         infoDiv.find('.address').text(loc.vicinity);
