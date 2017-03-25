@@ -15,10 +15,13 @@ function setupMap(lat, lng) {
 
     var infowindow = new google.maps.InfoWindow();
 
+    //set current location
     setMarker(lat, lng, "Your Location", map, infowindow);
+  
+    //add color variable to chagne start location (green?)
 
     $.post("GetRestaurants", {lat: lat, lng: lng}, function(response) {
-        $(mapEl).data('locs', response);
+        $(mapEl).data('locs', response); //saves all locations to the map
         var locs = Array(),
             counter = 1;
         $.each(response, function(index, element) {
@@ -32,6 +35,15 @@ function setupMap(lat, lng) {
     });
 }
 
+function setDistanceAndTime(placeID, distEl, timeEl) {
+    //debugger;
+    $.post("GetDistance", {placeID: placeID}, function(response) {
+        //debugger;
+        distEl.text(response.rows[0].elements[0].distance.text);
+        timeEl.text(response.rows[0].elements[0].duration.text);
+    });
+}
+
 function setMarker(lat, lng, text, map, infowindow) {
     marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
@@ -40,7 +52,7 @@ function setMarker(lat, lng, text, map, infowindow) {
 
     google.maps.event.addListener(marker, 'click', (function(marker) {
         return function() {
-            infowindow.setContent(text);
+            infowindow.setContent(text); //fills pin info
             infowindow.open(map, marker);
         };
     })(marker));
@@ -67,8 +79,8 @@ function getRecommendation(tries) {
         infoDiv.find('.name').text(loc.name);
         infoDiv.find('.rating').text(loc.rating + " stars");
         infoDiv.find('.address').text(loc.vicinity);
-        infoDiv.find('.distance').text("Don't know yet - away");
-        infoDiv.find('.eta').text("Don't know yet - minutes");
+        //debugger;
+        setDistanceAndTime(loc.place_id, infoDiv.find('.distance'), infoDiv.find('.eta'));
         
         infoDiv.find('.loader-div').hide();
         infoDiv.find('.content-div').show();
