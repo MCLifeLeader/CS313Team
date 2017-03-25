@@ -115,5 +115,5 @@ function focusPin(index) {
     var map = $("#map");
     var marker = map.data('markers')[index];
     google.maps.event.trigger(marker, 'click');
-    map.data('map').setCenter(marker.getPosition());
+    map.data('map').panTo(marker.getPosition());
 }
