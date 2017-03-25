@@ -35,35 +35,13 @@ public class GetLocationFromJs extends HttpServlet {
 
         // Setup JavaScript Post Event that automatically posts the location data to this endpoint
         // Javascript AJAX async post
-/*
-		var loadData = function ()
-		{
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET", '/GetLocationFromJs?location=[GPSData]', true);
-			//xhr.open("POST", '/GetLocationFromJs', true);
-			xhr.send(null);
-
-			xhr.onreadystatechange = function () {
-				if(xhr.readyState === 4 || xhr.readyState === XMLHttpRequest.DONE) {
-					if(xhr.status === 200 || xhr.status == 0) {
-					var response = xhr.responseText;
-					}
-					else {
-						// Error
-					}
-				}
-			}
-		};        
-        */        
         // Get form data from location.jsp
         String location = request.getParameter("location");
         // Replace spaces with + signs
         String parsed_location = location.replaceAll("\\s+", "+");
 
         request.setAttribute("location", location);
-
         
-
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -77,21 +55,6 @@ public class GetLocationFromJs extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**

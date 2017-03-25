@@ -11,31 +11,30 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iHangry | Find Some Foods</title>
-        
+
         <!-- jQuery Support -->
         <script src="scripts/jquery-3.1.1.min.js"></script>
 
         <!-- Bootstrap JavaScript Support -->
         <script src="scripts/bootstrap.min.js"></script>
-        
+
         <!-- BOOTSTRAP CSS -->
         <link rel="stylesheet" href="content/bootstrap.min.css">
-        
+
         <!-- MATERIAL DESIGN FOR BOOTSTRAP - http://fezvrasta.github.io/bootstrap-material-design/ -->
         <link rel="stylesheet" href="content/bootstrap-material-design.min.css" type="text/css">
-        
+
         <!-- CUSTOM STYLESHEETS-->
         <link rel="stylesheet" href="content/styles.css" type="text/css">
-        
+
         <!-- FAVICON IMAGE -->
         <link rel="icon" href="/images/iHangry.ico" type="image/x-icon">
-        
+
         <!-- Google Places API Access - For autocomplete (Move to servlet controller?) -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxRoQJSpiJs0YzwUoQZS86YqRT0eZSjoE&libraries=places"></script>
-       
-    </head>
-    <body>
 
+    </head>
+    <body onload="loadLatLong()">
         <main>
             <div class="container">
                 <div class="row">
@@ -59,13 +58,19 @@
         </footer>
         <!-- Google Places Autocomplete Script (Move as needed)-->
         <script>
-            var input = document.getElementById('location');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-          
-            if(navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(accept, decline);
+            function loadLatLong()
+            {
+                var input = document.getElementById('location');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(accept, decline);
+
+                    // Send the geolocation to the Java App
+                    submitGeoLocation(autocomplete);
+                }
             }
-            
+
             // If the user accepted geolocation tracking
             function accept(position) {
                 // Put the latitude and longitude into a string
@@ -73,40 +78,60 @@
                 // Put string into the location form
                 var location = document.getElementById("location");
                 location.value = latlon;
-                
+
                 // I'm still not 100% sure how to get this information
                 // to Java from JS. That is the missing piece that
                 // would go here...
             }
-            
+
             //stash position in local storage if available
             function storePosition(position) {
-                if (typeof(Storage) !== "undefined") {
+                if (typeof (Storage) !== "undefined") {
+
                     localStorage.setItem("location", position);
+
                     //var storedPosition = localStorage.getItem("location");
                     //alert("Location was stored as 'location' with value: ".concat(storedPosition));
                 } else {
                     //alert("Local Storage is Not Available: Your location will be forgotten when you close the browser.");
                 }
             }
-            
+
             //pulls position in local storage if available
             function retrievePosition(position) {
-                if (typeof(Storage) !== "undefined" && localStorage.getItem("location") !== "undefined") {
+                if (typeof (Storage) !== "undefined" && localStorage.getItem("location") !== "undefined") {
                     return localStorage.getItem("location");
                 } else {
                     //local storage was not available
                 }
             }
-            
+
             // If the user declined geolocation tracking
             function decline() {
                 // DEBUGGING
                 console.log("Rejected geolocation");
             }
-            
-            
+
+
+            function submitGeoLocation(loc)
+            {
+                var formData = "location=HelloWorld";
+                $.ajax({
+                    url: "GetLocationFromJs",
+                    type: "POST",
+                    data: formData,
+                    success: function (data, textStatus, jqXHR)
+                    {
+                        //data - response from server
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
+                    {
+
+                    }
+                });
+            }
+
         </script>
-        
+
     </body>
 </html>
