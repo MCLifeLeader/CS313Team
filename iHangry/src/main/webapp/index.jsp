@@ -81,12 +81,6 @@
                 // I'm still not 100% sure how to get this information
                 // to Java from JS. That is the missing piece that
                 // would go here...
-
-                var delayMillis = 100;
-
-                setTimeout(function () {
-                    window.location.replace("location.jsp");
-                }, delayMillis);
             }
 
             //stash position in local storage if available
@@ -131,6 +125,7 @@
                     success: function (data, textStatus, jqXHR)
                     {
                         //data - response from server
+                        window.location.replace("location.jsp");
                     },
                     error: function (jqXHR, textStatus, errorThrown)
                     {

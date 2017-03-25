@@ -22,19 +22,14 @@
         <script src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyBxRoQJSpiJs0YzwUoQZS86YqRT0eZSjoE" type="text/javascript"></script>
 
         <script type="text/javascript">
-            var delayMillis = 100;
-
-            setTimeout(function () {
-                $(function () {
-                    var lat = '${latitude}';
-                    var lng = '${longitude}';
-                    setupMap(lat, lng);
-                    $('#FindNext').on('click', function () {
-                        getRecommendation();
-                    });
+            $(function () {
+                var lat = '${latitude}';
+                var lng = '${longitude}';
+                setupMap(lat, lng);
+                $('#FindNext').on('click', function () {
+                    getRecommendation();
                 });
-            }, delayMillis);
-
+            });
 
         </script>
 
