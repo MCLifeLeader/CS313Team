@@ -65,9 +65,6 @@
 
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(accept, decline);
-
-                    // Send the geolocation to the Java App
-                    submitGeoLocation(autocomplete);
                 }
             }
 
@@ -79,6 +76,8 @@
                 var location = document.getElementById("location");
                 location.value = latlon;
 
+                // Send the geolocation to the Java App
+                submitGeoLocation(latlon);
                 // I'm still not 100% sure how to get this information
                 // to Java from JS. That is the missing piece that
                 // would go here...
@@ -115,7 +114,10 @@
 
             function submitGeoLocation(loc)
             {
-                var formData = "location=HelloWorld";
+                var formData = "location="+JSON.stringify(loc);
+
+                console.log(formData);
+
                 $.ajax({
                     url: "GetLocationFromJs",
                     type: "POST",
