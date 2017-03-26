@@ -19,6 +19,8 @@
 
         <script src="scripts/mapHelper.js"></script>
 
+        <script src="scripts/ihangry.js"></script>
+
         <script src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyBxRoQJSpiJs0YzwUoQZS86YqRT0eZSjoE" type="text/javascript"></script>
 
         <script type="text/javascript">
@@ -46,7 +48,37 @@
         <link rel="stylesheet" href="content/styles.css" type="text/css">
 
         <!-- FAVICON IMAGE-->
-        <link rel="icon" href="/images/iHangry.ico" type="image/x-icon" />
+        <link rel="icon" href="/images/iHangry.ico" type="image/x-icon">
+
+        <style>
+
+            .slide {
+                background: #fff;
+                -ms-border-radius: 4px;
+                border-radius: 4px;
+                -webkit-box-shadow: 0 8px 6px -6px #e0e0e0;
+                -ms-box-shadow: 0 8px 6px -6px #e0e0e0;
+                box-shadow: 0 8px 6px -6px #e0e0e0;
+                padding: 20px;
+                border: 1px solid #dce4e9;
+                margin-bottom: 20px;
+                -ms-word-wrap: break-word;
+                word-wrap: break-word;
+            }
+
+            .slide.feedback-popup {
+                position: absolute;
+                bottom: 10px;
+                width: 300px;
+                left: -310px;
+                padding-top: 10px;
+            }
+
+            .slide.feedback-popup #closeFeedbackPopup {
+                font-size: 200%;
+            }
+        </style>
+
     </head>
     <body>
 
@@ -80,7 +112,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row text-center">
                     <h2>DEBUGGING</h2>
                     <pre>
@@ -95,7 +126,13 @@
             </div>
         </main>
         <footer>
-
+            <div class="slide feedback-popup">
+                <a href="#" class="pull-right" id="closeFeedbackPopup">
+                    &times;
+                </a>
+                <h4>Send Us Some Feedback</h4>
+                <button type="button" class="btn btn-primary">Send Feedback</button>
+            </div>
         </footer>
         <!-- Geolocation Access Script (Move as needed) -->
         <!--        <script>
