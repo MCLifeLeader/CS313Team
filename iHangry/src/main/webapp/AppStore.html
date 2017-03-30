@@ -5,37 +5,149 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>iHangry - AppStore</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- jQuery Support -->
-        <script src="scripts/jquery-3.1.1.min.js"></script>
 
-        <!-- Bootstrap JavaScript Support -->
-        <script src="scripts/bootstrap.min.js"></script>
+<head>
+    <title>iHangry - AppStore</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery Support -->
+    <script src="scripts/jquery-3.1.1.min.js"></script>
 
-        <!-- BOOTSTRAP CSS -->
-        <link rel="stylesheet" href="content/bootstrap.min.css">
+    <!-- Bootstrap JavaScript Support -->
+    <script src="scripts/bootstrap.min.js"></script>
 
-        <!-- MATERIAL DESIGN FOR BOOTSTRAP - http://fezvrasta.github.io/bootstrap-material-design/ -->
-        <link rel="stylesheet" href="content/bootstrap-material-design.min.css" type="text/css">
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="content/bootstrap.min.css">
 
-        <!-- CUSTOM STYLESHEETS-->
-        <link rel="stylesheet" href="content/styles.css" type="text/css">
+    <!-- MATERIAL DESIGN FOR BOOTSTRAP - http://fezvrasta.github.io/bootstrap-material-design/ -->
+    <link rel="stylesheet" href="content/bootstrap-material-design.min.css" type="text/css">
 
-        <!-- FAVICON IMAGE -->
-        <link rel="icon" href="/images/iHangry.ico" type="image/x-icon">
-    </head>
-    <body>
-        <div class="row">
+    <!-- CUSTOM STYLESHEETS-->
+    <link rel="stylesheet" href="content/styles.css" type="text/css">
+
+    <!-- FAVICON IMAGE -->
+    <link rel="icon" href="/images/iHangry.ico" type="image/x-icon">
+    <style>
+        P {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: larger;
+        }
+        
+        .carousel-caption {
+            color: orangered;
+        }
+        
+        .topSpace {
+            margin-top: 50px;
+        }
+        
+        .bottomSpace {
+            margin-bottom: 50px;
+        }
+        .textCenter {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row textCenter">
             <div class="col-md-12">
                 <h1>iHangry</h1>
                 <h2>Sometimes you are so hungry you're angry, solve your angry hunger using iHangry!</h2>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
-                Web application for showing local dining establishments, and their ratings.
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="min-height: 540px;">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="images/SearchBar.PNG" alt="Search Bar">
+                            <div class="carousel-caption">
+                                <h3>Search Bar</h3>
+                                <p>Enter an Address or Share your GPS location to look for places to fix your iHangry!</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="images/NextStore.PNG" alt="Next Store">
+                            <div class="carousel-caption">
+                                <h3>Next Store</h3>
+                                <p>When you're iHangry the food had better be perfect. Everything else is Gross! Click the button
+                                    to find the next meal.</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="images/NextStorePlusPins.PNG" alt="Pins">
+                            <div class="carousel-caption">
+                                <h3>Pins</h3>
+                                <p>Your location and the target destination that will fix your iHangry are all displayed on
+                                    the page near you!</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="images/SearchMap.PNG" alt="Search Map">
+                            <div class="carousel-caption">
+                                <h3>Search Map</h3>
+                                <p>See the whole ara and know where you are relative to where you want to solve your iHangry
+                                    needs!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </body>
+        <div class="row topSpace">
+            <div class="col-md-12">
+                <!-- Thanks to https://play.google.com/store/apps/details?id=com.nianticproject.ingress&hl=en for the fun text. -->
+                <p>iHangry transforms your inner angry hunger and channels it in the ultimate food finding experience!</p>
+                <p>Your hunger is at stake. You must choose a restaurant to solve your primal need for food.</p>
+                <p>A mysterious energy has been unearthed by a team of scientists in Europe. The origin and purpose of this
+                    force is unknown, but some researchers believe it is influencing the way we eat. We must control it or
+                    it will control us.</p>
+                <p>Seek to embrace the power that this hunger bestows upon us and struggle to defend, and protect what’s left
+                    of that hunger.</p>
+                <p>Install iHangry and transform your world.</p>
+                <h3>Usage</h3>
+                <p>
+                    iHangry is a tool to help you locate a quick place to grab a bite to eat. When you're on the go and you need a quick meal
+                    iHangry pulls up whats close and helps solve your hunger needs by locating great places to eat!
+                </p>
+                <p>The first page that you are presented is the location finder. You can allow your GPS coordinates to be sent
+                    to our app and it will then locate and display on the map a list of the closest resturants to your location.
+                    You can also manually enter in an address or general location and it will use that information to pull
+                    up places to eat.
+                </p>
+                <p>Enjoy your meal and solve that iHangry!</p>
+            </div>
+        </div>
+        <div class="row bottomSpace">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+    </div>
+</body>
+
 </html>
