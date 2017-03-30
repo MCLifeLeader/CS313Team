@@ -31,42 +31,70 @@ function setupMap(lat, lng) {
                     {"featureType":"transit","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},
                     {"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"}]},
                     {"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#3d3d3d"}]}];
+    
+    // "Night" via mapstyle.withgoogle.com
+    var mapStyle2 = [{"elementType":"geometry","stylers":[{"color":"#242f3e"}]},
+                    {"elementType":"labels.text.fill","stylers":[{"color":"#746855"}]},
+                    {"elementType":"labels.text.stroke","stylers":[{"color":"#242f3e"}]},
+                    {"featureType":"administrative.locality","elementType": "labels.text.fill","stylers":[{"color":"#d59563"}]},
+                    {"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#d59563"}]},
+                    {"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#263c3f"}]},
+                    {"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#6b9a76"}]},
+                    {"featureType":"road","elementType":"geometry","stylers":[{"color":"#38414e"}]},
+                    {"featureType":"road","elementType":"geometry.stroke","stylers":[{"color":"#212a37"}]},
+                    {"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#9ca5b3"}]},
+                    {"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#746855"}]},
+                    {"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#1f2835"}]},
+                    {"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#f3d19c"}]},
+                    {"featureType":"transit","elementType":"geometry","stylers":[{"color":"#2f3948"}]},
+                    {"featureType":"transit.station","elementType":"labels.text.fill","stylers":[{"color":"#d59563"}]},
+                    {"featureType":"water","elementType":"geometry","stylers":[{"color":"#17263c"}]},
+                    {"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#515c6d"}]},
+                    {"featureType": "water","elementType":"labels.text.stroke","stylers":[{"color":"#17263c"}]}]
                 
-    // "Retro" via mapstyle.withgoogle.com
-    var mapStyle2 = [{"elementType":"geometry","stylers":[{"color":"#ebe3cd"}]},
-                    {"elementType":"labels.text.fill","stylers":[{"color":"#523735"}]},
-                    {"elementType":"labels.text.stroke","stylers":[{"color":"#f5f1e6"}]},
-                    {"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9b2a6"}]},
-                    {"featureType":"administrative.land_parcel","elementType":"geometry.stroke","stylers":[{"color":"#dcd2be"}]},
-                    {"featureType":"administrative.land_parcel","elementType":"labels.text.fill","stylers":[{"color":"#ae9e90"}]},
-                    {"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#dfd2ae"}]},
-                    {"featureType":"poi","elementType":"geometry","stylers":[{"color":"#dfd2ae"}]},
-                    {"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#93817c"}]},
-                    {"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#a5b076"}]},
-                    {"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#447530"}]},
-                    {"featureType":"road","elementType":"geometry","stylers":[{"color":"#f5f1e6"}]},
-                    {"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#fdfcf8"}]},
-                    {"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#f8c967"}]},
-                    {"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#e9bc62"}]},
-                    {"featureType":"road.highway.controlled_access","elementType":"geometry","stylers":[{"color":"#e98d58"}]},
-                    {"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#db8555"}]},
-                    {"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#806b63"}]},
-                    {"featureType":"transit.line","elementType":"geometry","stylers":[{"color":"#dfd2ae"}]},
-                    {"featureType":"transit.line","elementType":"labels.text.fill","stylers":[{"color":"#8f7d77"}]},
-                    {"featureType":"transit.line","elementType":"labels.text.stroke","stylers":[{"color":"#ebe3cd"}]},
-                    {"featureType":"transit.station","elementType":"geometry","stylers":[{"color":"#dfd2ae"}]},
-                    {"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#b9d3c2"}]},
-                    {"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#92998d"}]}];
+    // "Flat Colors" via https://snazzymaps.com/style/19955/flat-colors
+    var mapStyle3 = [{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#747474"},{"lightness":"23"}]},
+                    {"featureType":"poi.attraction","elementType":"geometry.fill","stylers":[{"color":"#f38eb0"}]},
+                    {"featureType":"poi.government","elementType":"geometry.fill","stylers":[{"color":"#ced7db"}]},
+                    {"featureType":"poi.medical","elementType":"geometry.fill","stylers":[{"color":"#ffa5a8"}]},
+                    {"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#c7e5c8"}]},
+                    {"featureType":"poi.place_of_worship","elementType":"geometry.fill","stylers":[{"color":"#d6cbc7"}]},
+                    {"featureType":"poi.school","elementType":"geometry.fill","stylers":[{"color":"#c4c9e8"}]},
+                    {"featureType":"poi.sports_complex","elementType":"geometry.fill","stylers":[{"color":"#b1eaf1"}]},
+                    {"featureType":"road","elementType":"geometry","stylers":[{"lightness":"100"}]},
+                    {"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"},{"lightness":"100"}]},
+                    {"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffd4a5"}]},
+                    {"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffe9d2"}]},
+                    {"featureType":"road.local","elementType":"all","stylers":[{"visibility":"simplified"}]},
+                    {"featureType":"road.local","elementType":"geometry.fill","stylers":[{"weight":"3.00"}]},
+                    {"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"weight":"0.30"}]},
+                    {"featureType":"road.local","elementType":"labels.text","stylers":[{"visibility":"on"}]},
+                    {"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#747474"},{"lightness":"36"}]},
+                    {"featureType":"road.local","elementType":"labels.text.stroke","stylers":[{"color":"#e9e5dc"},{"lightness":"30"}]},
+                    {"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":"100"}]},
+                    {"featureType":"water","elementType":"all","stylers":[{"color":"#d2e7f7"}]}]
+               
+    // "Light Dream" via https://snazzymaps.com/style/134/light-dream
+    var mapStyle4 = [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},
+                    {"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},
+                    {"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},
+                    {"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},
+                    {"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},
+                    {"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]
+                
+                    
 
     var styledMapType = new google.maps.StyledMapType(mapStyle1, {name: 'Dark'});
-    var styledMapType2 = new google.maps.StyledMapType(mapStyle2, {name: 'Retro'});
-
+    var styledMapType2 = new google.maps.StyledMapType(mapStyle2, {name: 'Night'});
+    var styledMapType3 = new google.maps.StyledMapType(mapStyle3, {name: 'Flat'});
+    var styledMapType4 = new google.maps.StyledMapType(mapStyle4, {name: 'Light'});
+    
     var mapEl = document.getElementById("map");
     var map = new google.maps.Map(mapEl, {
         zoom: 14,
         center: new google.maps.LatLng(lat, lng),
         mapTypeControlOptions: {
-            mapTypeIds: ['roadmap', 'styled_map', 'styled_map2']
+            mapTypeIds: ['roadmap', 'styled_map', 'styled_map2', 'styled_map3', 'styled_map4']
         }
     });
 
@@ -76,6 +104,12 @@ function setupMap(lat, lng) {
 
     map.mapTypes.set('styled_map2', styledMapType2);
     map.setMapTypeId('styled_map2');
+    
+    map.mapTypes.set('styled_map3', styledMapType3);
+    map.setMapTypeId('styled_map3');
+    
+    map.mapTypes.set('styled_map4', styledMapType4);
+    map.setMapTypeId('styled_map4');
 
     $(mapEl).data('map', map);
 
@@ -94,7 +128,7 @@ function setupMap(lat, lng) {
         });
 
         var markers = Array();//Create marker list
-        var color = "#0F0";
+        var color = "#009587"; // Previously #0F0 -- Feel free to revert!
         for (var i = 0; i < locs.length; i++) {
             setMarker(locs[i][1], locs[i][2], locs[i][0], map, infowindow, color, markers);
         }
