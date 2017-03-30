@@ -51,7 +51,7 @@
         <link rel="icon" href="/images/iHangry.ico" type="image/x-icon">
 
         <style>
-
+/*            Any chance we can find a way to move this into our css file? I can't seem to get it working if it is.*/
             .slide {
                 background: #fff;
                 -ms-border-radius: 4px;
@@ -77,6 +77,27 @@
             .slide.feedback-popup #closeFeedbackPopup {
                 font-size: 200%;
             }
+
+            .overlay {
+                height: 90%;
+                width: 90%;
+                position: absolute;
+                z-index: 1;
+                top: 15px;
+                left: 45px;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0, 0.9);
+                overflow-x: hidden;
+                display: none;
+            }
+            .closebtn {
+                position: absolute;
+                z-index: 2;
+                top: 20px;
+                right: 60px;
+                font-size: 60px;
+            }
+
         </style>
 
     </head>
@@ -104,7 +125,7 @@
                                     <p class="distance">Distance</p>
                                     <p class="eta">Time to get there</p>
                                 </div>
-
+                                
                                 <div class="text-center">
                                     <button class="btn btn-large btn-raised btn-primary" id="FindNext">That looks gross. Find another.</button>
                                 </div>
@@ -125,13 +146,17 @@
                 </div>
             </div>
         </main>
+        <div class="overlay">
+            <a href="javascript:void(0)" id="closebtn" class="closebtn">&times;</a>
+            <iframe  src="https://docs.google.com/forms/d/e/1FAIpQLScwxjahxHmM28o4sZlR_JFM0bMhKyxdIN6UD9OM-rhFOu8kRA/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        </div>
         <footer>
             <div class="slide feedback-popup">
                 <a href="#" class="pull-right" id="closeFeedbackPopup">
                     &times;
                 </a>
                 <h4>Send Us Some Feedback</h4>
-                <button type="button" class="btn btn-primary">Send Feedback</button>
+                <button id="feedback" type="button" class="btn btn-primary">Send Feedback</button>
             </div>
         </footer>
         <!-- Geolocation Access Script (Move as needed) -->

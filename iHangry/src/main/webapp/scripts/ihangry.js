@@ -23,4 +23,20 @@ $(function () {
             }).css('border-right', '1px solid #dce4e9');
         }
     });
+
+    $('#feedback').on('click', function (e) {
+        e.preventDefault();
+        $('.feedback-popup').animate({
+            left: -290
+        }).css('border-right', '5px solid #00aeef');
+        $('.overlay').fadeIn("slow");
+
+    });
+
+    $('#closebtn').on('click', function (e) {
+        e.preventDefault();
+        $('.overlay').fadeOut('slow');
+    });
 });
+
+
