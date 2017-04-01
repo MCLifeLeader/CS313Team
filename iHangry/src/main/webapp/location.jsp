@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>iHangry | Find Some Foods</title>
 
         <!-- jQuery Support -->
@@ -31,8 +32,20 @@
                 $('#FindNext').on('click', function () {
                     getRecommendation();
                 });
+                
+                $('#ShowButton').on('click', function() {
+                    $('.main-box-container').removeClass('is-hidden');
+                });
+                
+                $('#ChangeLoc').on('click', function() {
+                    sessionStorage.setItem('ChangeLoc', true);
+                    window.location = "./";
+                });
+                
+                $('#HideButton').on('click', function() {
+                    $('.main-box-container').addClass('is-hidden');
+                });
             });
-
         </script>
 
         <!-- BOOTSTRAP CSS -->
@@ -50,64 +63,14 @@
         <!-- FAVICON IMAGE-->
         <link rel="icon" href="/images/iHangry.ico" type="image/x-icon">
 
-        <style>
-/*            Any chance we can find a way to move this into our css file? I can't seem to get it working if it is.*/
-            .slide {
-                background: #fff;
-                -ms-border-radius: 4px;
-                border-radius: 4px;
-                -webkit-box-shadow: 0 8px 6px -6px #e0e0e0;
-                -ms-box-shadow: 0 8px 6px -6px #e0e0e0;
-                box-shadow: 0 8px 6px -6px #e0e0e0;
-                padding: 20px;
-                border: 1px solid #dce4e9;
-                margin-bottom: 20px;
-                -ms-word-wrap: break-word;
-                word-wrap: break-word;
-            }
-
-            .slide.feedback-popup {
-                position: absolute;
-                bottom: 10px;
-                width: 300px;
-                left: -310px;
-                padding-top: 10px;
-            }
-
-            .slide.feedback-popup #closeFeedbackPopup {
-                font-size: 200%;
-            }
-
-            .overlay {
-                height: 90%;
-                width: 90%;
-                position: absolute;
-                z-index: 1;
-                top: 15px;
-                left: 45px;
-                background-color: rgb(0,0,0);
-                background-color: rgba(0,0,0, 0.9);
-                overflow-x: hidden;
-                display: none;
-            }
-            .closebtn {
-                position: absolute;
-                z-index: 2;
-                top: 20px;
-                right: 60px;
-                font-size: 60px;
-            }
-
-        </style>
-
     </head>
     <body>
-
         <main>
             <div class="container">
                 <div id="map"></div>
-                <div class="row margin-top">
-                    <div class="col-sm-5 col-md-4">
+                <button class="btn btn-sm btn-raised btn-warning" id="ShowButton">Show</button>
+                <div class="row margin-top main-box-container">
+                    <div class="col-xs-5 col-md-4 main-box">
                         <div class="row">
                             <div id="InfoDiv" class="well">
                                 <span class="text-center">
@@ -129,22 +92,15 @@
                                 <div class="text-center">
                                     <button class="btn btn-large btn-raised btn-primary" id="FindNext">That looks gross. Find another.</button>
                                 </div>
+                                <div class="text-center hide-banner">
+                                    <button class="btn btn-sm btn-raised btn-warning no-margin" id="HideButton">Hide</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row text-center">
-                    <h2>DEBUGGING</h2>
-                    <pre>
-                        ${location}<br>
-                        Geocode Results:<br>
-                        <c:forEach items="${geocodeList}" var="geocode">
-                            ${geocode}<br>
-                        </c:forEach>
-                    </pre>
-                    <a href="index.jsp" class="btn btn-large btn-raised btn-primary pull-right">Change Location</a>
-                </div>
             </div>
+            <button id="ChangeLoc" class="btn btn-large btn-raised btn-primary pull-right">Change Location</button>
         </main>
         <div class="overlay">
             <a href="javascript:void(0)" id="closebtn" class="closebtn">&times;</a>
