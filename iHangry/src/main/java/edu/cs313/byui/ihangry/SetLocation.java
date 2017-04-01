@@ -55,10 +55,10 @@ public class SetLocation extends HttpServletiHangryBase {
 
         // Get the geocode (lat/long) for the address using Google Maps API for use
         // with Google Places search
-        //URL addressUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?key="
+        URL addressUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?key="
         
         // Google API Proxy Wrapper Written in C# By Michael Carey and hosted in Azure
-        URL addressUrl = new URL("https://mlmlinkup.com/Api/ProxyGeocode?key="
+        //URL addressUrl = new URL("https://mlmlinkup.com/Api/ProxyGeocode?key="
                 + ApiKey
                 + "&address=" + parsed_location);
         

@@ -50,10 +50,10 @@ public class GetDistance extends HttpServletiHangryBase {
         
         // Create URL to get a list of nearby restaurants
         // Google Places API requires that location is given in latitude,longitude format
-        //URL distanceURL = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?key="
+        URL distanceURL = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?key="
 
         // Google API Proxy Wrapper Written in C# By Michael Carey and hosted in Azure
-        URL distanceURL = new URL("https://mlmlinkup.com/Api/ProxyDistanceMatrix?key="
+        //URL distanceURL = new URL("https://mlmlinkup.com/Api/ProxyDistanceMatrix?key="
                            + ApiKey
                            + "&units=imperial"
                            + "&mode=driving"

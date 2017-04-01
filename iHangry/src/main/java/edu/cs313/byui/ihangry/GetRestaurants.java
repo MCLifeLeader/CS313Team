@@ -45,10 +45,10 @@ public class GetRestaurants extends HttpServletiHangryBase {
         
         // Create URL to get a list of nearby restaurants
         // Google Places API requires that location is given in latitude,longitude format
-        //URL restaurantsUrl = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key="
+        URL restaurantsUrl = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key="
 
         // Google API Proxy Wrapper Written in C# By Michael Carey and hosted in Azure
-        URL restaurantsUrl = new URL("https://mlmlinkup.com/Api/ProxyNearBySearch?key="
+        //URL restaurantsUrl = new URL("https://mlmlinkup.com/Api/ProxyNearBySearch?key="
                            + ApiKey
                            + "&location=" + lat + "," + lng
                            + "&rankby=distance&type=restaurant");
