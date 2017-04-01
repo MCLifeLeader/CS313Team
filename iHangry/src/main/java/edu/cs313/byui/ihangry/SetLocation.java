@@ -58,7 +58,7 @@ public class SetLocation extends HttpServletiHangryBase {
         //URL addressUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?key="
         
         // Google API Proxy Wrapper Written in C# By Michael Carey and hosted in Azure
-        URL addressUrl = new URL("https://mlmlinkup.com/Api/ProxyGoogleApi?key="
+        URL addressUrl = new URL("https://mlmlinkup.com/Api/ProxyGeocode?key="
                 + ApiKey
                 + "&address=" + parsed_location);
         

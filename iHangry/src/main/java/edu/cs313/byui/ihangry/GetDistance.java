@@ -9,13 +9,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import edu.cs313.byui.HttpServletiHangryBase;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URL;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -53,7 +50,10 @@ public class GetDistance extends HttpServletiHangryBase {
         
         // Create URL to get a list of nearby restaurants
         // Google Places API requires that location is given in latitude,longitude format
-        URL distanceURL = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?key="
+        //URL distanceURL = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?key="
+
+        // Google API Proxy Wrapper Written in C# By Michael Carey and hosted in Azure
+        URL distanceURL = new URL("https://mlmlinkup.com/Api/ProxyDistanceMatrix?key="
                            + ApiKey
                            + "&units=imperial"
                            + "&mode=driving"
