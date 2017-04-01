@@ -4,19 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import edu.cs313.byui.HttpServletiHangryBase;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 
 /**
  *
@@ -61,12 +55,19 @@ public class SetLocation extends HttpServletiHangryBase {
 
         // Get the geocode (lat/long) for the address using Google Maps API for use
         // with Google Places search
-        URL addressUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?key="
+        //URL addressUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?key="
+        
+        // Google API Proxy Wrapper Written in C# By Michael Carey and hosted in Azure
+        URL addressUrl = new URL("https://mlmlinkup.com/Api/ProxyGoogleApi?key="
                 + ApiKey
                 + "&address=" + parsed_location);
+        
         ObjectMapper addressMapper = new ObjectMapper();
+        
         Map<String, Object> addressMap = addressMapper.readValue(addressUrl, Map.class);
+        
         List geocodeList = (List) addressMap.get("results");
+        
         for (Object item : geocodeList) {
             Map<String, Object> innerMap = (Map<String, Object>) item;
         }
