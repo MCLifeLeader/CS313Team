@@ -46,7 +46,7 @@ public class SetLocation extends HttpServletiHangryBase {
 
         // Get form data from location.jsp. 
         String location = request.getParameter("location");
-        
+
         // If empty send them back to the text entry page
         if (location.isEmpty()) {
             request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -74,6 +74,10 @@ public class SetLocation extends HttpServletiHangryBase {
 
         Gson gson = new Gson();
         GoogleGeoCodeResponse result = gson.fromJson(gson.toJson(addressMap), GoogleGeoCodeResponse.class);
+
+        if (result == null || result.results == null || result.results.length == 0) {
+            throw new java.lang.Error("Google API Failed to Return Data");
+        }
 
         String lat = result.results[0].geometry.location.lat;
         String lng = result.results[0].geometry.location.lng;
