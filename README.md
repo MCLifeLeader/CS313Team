@@ -7,6 +7,9 @@ This project is to demonstrate a team collaborative effort in developing a full 
 ## Project Hosted Location
 <a href="https://cs313team.herokuapp.com/">https://cs313team.herokuapp.com/</a>
 
+### Project App Store
+<a href="https://cs313team.herokuapp.com/AppStore.html">https://cs313team.herokuapp.com/AppStore.html</a>
+
 ## Project Description
 <a href="https://docs.google.com/document/d/12ICpw06PWAILqWMi6fGvil4nBqkiN91hkjCIs-aIs9Y/">Project Proposal</a>
 
