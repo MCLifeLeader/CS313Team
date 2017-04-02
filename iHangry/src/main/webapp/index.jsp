@@ -64,7 +64,7 @@
                 var input = document.getElementById('location');
                 var autocomplete = new google.maps.places.Autocomplete(input);
 
-                if (navigator.geolocation && sessionStorage.getItem("autosave")) {
+                if (navigator.geolocation && !sessionStorage.getItem("autosave")) {
                     navigator.geolocation.getCurrentPosition(accept, decline);
                 }
             }
