@@ -14,7 +14,7 @@
         <title>iHangry | Find Some Foods</title>
 
         <!-- jQuery Support -->
-        <script src="scripts/jquery-3.1.1.min.js"></script>
+        <script src="scripts/jquery.min.js"></script>
 
         <!-- Bootstrap JavaScript Support -->
         <script src="scripts/bootstrap.min.js"></script>
